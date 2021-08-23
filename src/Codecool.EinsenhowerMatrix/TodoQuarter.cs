@@ -64,7 +64,15 @@ namespace Codecool.EinsenhowerMatrix
         /// <returns>string with all nested items</returns>
         public override string ToString()
         {
-            throw new NotImplementedException();
+            SortToDoItems();
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in Items)
+            {
+                sb.Append(item.ToString());
+            }
+
+            return sb.ToString();
         }
 
         private void SortToDoItems()
