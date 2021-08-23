@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace Codecool.EinsenhowerMatrix
 {
@@ -67,7 +68,18 @@ namespace Codecool.EinsenhowerMatrix
         /// <returns>string containing instance values</returns>
         public override string ToString()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder("{Title: ")
+                .Append(Title)
+                .Append(", ")
+                .Append("Deadline: ")
+                .Append(Deadline.ToString())
+                .Append(", ")
+                .Append("IsDone: ")
+                .Append(IsDone.ToString())
+                .Append("IsImportant: ")
+                .Append(IsImportant.ToString())
+                .Append("}");
+            return sb.ToString();
         }
     }
 }
