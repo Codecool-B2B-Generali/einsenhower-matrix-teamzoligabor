@@ -56,6 +56,7 @@ namespace Codecool.EinsenhowerMatrix
         /// </summary>
         public void ArchiveItems()
         {
+            Items.Clear();
         }
 
         /// <summary>
