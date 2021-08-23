@@ -28,6 +28,7 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="deadline">deadline of item</param>
         public void AddItem(string title, DateTime deadline)
         {
+            Items.Add(new TodoItem(title, deadline));
         }
 
         /// <summary>
