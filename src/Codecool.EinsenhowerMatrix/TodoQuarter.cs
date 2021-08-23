@@ -69,6 +69,7 @@ namespace Codecool.EinsenhowerMatrix
 
         private void SortToDoItems()
         {
+            Items.Sort((x, y) => x.Deadline.CompareTo(y.Deadline));
         }
     }
 }
