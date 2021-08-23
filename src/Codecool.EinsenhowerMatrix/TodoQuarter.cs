@@ -48,6 +48,7 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="index">index of </param>
         public void RemoveItem(int index)
         {
+            Items.RemoveAt(index);
         }
 
         /// <summary>
