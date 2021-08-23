@@ -19,6 +19,7 @@ namespace Codecool.EinsenhowerMatrix
         /// </summary>
         public TodoQuarter()
         {
+            Items = new List<TodoItem>();
         }
 
         /// <summary>
@@ -28,6 +29,7 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="deadline">deadline of item</param>
         public void AddItem(string title, DateTime deadline)
         {
+            Items.Add(new TodoItem(title, deadline));
         }
 
         /// <summary>
@@ -38,6 +40,7 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="isImportant">boolean that indicates whenever item is important or not</param>
         public void AddItem(string title, DateTime deadline, bool isImportant)
         {
+            Items.Add(new TodoItem(title, deadline, isImportant));
         }
 
         /// <summary>
@@ -46,6 +49,7 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="index">index of </param>
         public void RemoveItem(int index)
         {
+            Items.RemoveAt(index);
         }
 
         /// <summary>
@@ -53,6 +57,7 @@ namespace Codecool.EinsenhowerMatrix
         /// </summary>
         public void ArchiveItems()
         {
+            Items.Clear();
         }
 
         /// <summary>
@@ -61,11 +66,20 @@ namespace Codecool.EinsenhowerMatrix
         /// <returns>string with all nested items</returns>
         public override string ToString()
         {
-            throw new NotImplementedException();
+            SortToDoItems();
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in Items)
+            {
+                sb.Append(item.ToString());
+            }
+
+            return sb.ToString();
         }
 
         private void SortToDoItems()
         {
+            Items.Sort((x, y) => x.Deadline.CompareTo(y.Deadline));
         }
     }
 }
