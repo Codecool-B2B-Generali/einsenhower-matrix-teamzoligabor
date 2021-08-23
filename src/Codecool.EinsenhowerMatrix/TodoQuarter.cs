@@ -39,6 +39,7 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="isImportant">boolean that indicates whenever item is important or not</param>
         public void AddItem(string title, DateTime deadline, bool isImportant)
         {
+            Items.Add(new TodoItem(title, deadline, isImportant));
         }
 
         /// <summary>
