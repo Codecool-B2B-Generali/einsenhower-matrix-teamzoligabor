@@ -34,6 +34,8 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="deadline">deadline for title</param>
         public TodoItem(string title, DateTime deadline)
         {
+            Title = title;
+            Deadline = deadline;
         }
 
         /// <summary>
@@ -45,6 +47,7 @@ namespace Codecool.EinsenhowerMatrix
         public TodoItem(string title, DateTime deadline, bool isImportant)
             : this(title, deadline)
         {
+            IsImportant = isImportant;
         }
 
         /// <summary>

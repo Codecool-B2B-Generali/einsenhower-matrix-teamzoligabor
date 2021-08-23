@@ -19,6 +19,7 @@ namespace Codecool.EinsenhowerMatrix
         /// </summary>
         public TodoQuarter()
         {
+            Items = new List<TodoItem>();
         }
 
         /// <summary>
