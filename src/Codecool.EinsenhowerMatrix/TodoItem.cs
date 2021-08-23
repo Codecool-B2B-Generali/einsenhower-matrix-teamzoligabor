@@ -53,6 +53,7 @@ namespace Codecool.EinsenhowerMatrix
         /// </summary>
         public void Mark()
         {
+            IsDone = true;
         }
 
         /// <summary>
@@ -60,6 +61,7 @@ namespace Codecool.EinsenhowerMatrix
         /// </summary>
         public void UnMark()
         {
+            IsDone = false;
         }
 
         /// <summary>
