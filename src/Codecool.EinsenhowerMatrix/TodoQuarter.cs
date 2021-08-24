@@ -71,7 +71,7 @@ namespace Codecool.EinsenhowerMatrix
             StringBuilder sb = new StringBuilder();
             foreach (var item in Items)
             {
-                sb.Append(item.ToString());
+                sb.AppendLine(item.ToString());
             }
 
             return sb.ToString();
@@ -79,7 +79,7 @@ namespace Codecool.EinsenhowerMatrix
 
         private void SortToDoItems()
         {
-            Items.Sort((x, y) => x.Deadline.CompareTo(y.Deadline));
+            Items.Sort((x, y) => DateTime.Compare(x.Deadline, y.Deadline));
         }
     }
 }
