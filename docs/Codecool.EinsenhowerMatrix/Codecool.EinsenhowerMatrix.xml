@@ -86,6 +86,11 @@
             Top level class for Matrix
             </summary>
         </member>
+        <member name="T:Codecool.EinsenhowerMatrix.TodoMatrix.QuarterTypes">
+            <summary>
+            QuarterTypes enum
+            </summary>
+        </member>
         <member name="P:Codecool.EinsenhowerMatrix.TodoMatrix.Quarters">
             <summary>
             Gets or sets dictionary with quarters
@@ -121,11 +126,25 @@
             </summary>
             <param name="filePath">file path under all task will be saved</param>
         </member>
+        <member name="M:Codecool.EinsenhowerMatrix.TodoMatrix.GetSpecificQuarter(Codecool.EinsenhowerMatrix.TodoMatrix.QuarterTypes)">
+            <summary>
+            Returns human readable representation for one specific quarter
+            </summary>
+            <returns>string with all quarters and associated items</returns>
+            <param name="quarterTypes">quartertype</param>
+        </member>
         <member name="M:Codecool.EinsenhowerMatrix.TodoMatrix.ToString">
             <summary>
             Returns human readable representation for matrix
             </summary>
             <returns>string with all quarters and associated items</returns>
+        </member>
+        <member name="M:Codecool.EinsenhowerMatrix.TodoMatrix.DeleteTodoItemFromSpecificQuarter(Codecool.EinsenhowerMatrix.TodoMatrix.QuarterTypes,System.Int32)">
+            <summary>
+            Returns human readable representation for one specific quarter
+            </summary>
+            <param name="quarterType">quartertype</param>
+            <param name="index">index</param>
         </member>
         <member name="T:Codecool.EinsenhowerMatrix.TodoQuarter">
             <summary>
