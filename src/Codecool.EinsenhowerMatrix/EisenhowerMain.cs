@@ -38,15 +38,53 @@ namespace Codecool.EinsenhowerMatrix
                             _cmd = false;
                             break;
                         case 1:
-                            todoMatrix.ToString();
+                            Console.WriteLine(todoMatrix.ToString());
+                            Console.ReadKey();
                             break;
                         case 2:
                             QuarterMenu(todoMatrix);
+                            break;
+                        case 3:
+                            CreateNewTodo(todoMatrix);
                             break;
                     }
                 }
             }
             while (_cmd);
+        }
+
+        private static void CreateNewTodo(TodoMatrix todoMatrix)
+        {
+            bool titleIsValid = true;
+            string title;
+            do
+            {
+                Console.Write("Write todo title: ");
+                title = Console.ReadLine();
+                if (title != string.Empty)
+                {
+                    titleIsValid = false;
+                }
+            }
+            while (titleIsValid);
+            DateTime date;
+            bool isImportant;
+            bool dateIsValid;
+            do
+            {
+                Console.Write("Write todo date: ");
+                dateIsValid = DateTime.TryParse(Console.ReadLine(), out date);
+            }
+            while (!dateIsValid);
+            bool isImportantValid;
+            do
+            {
+                Console.Write("Write todo is important: ");
+                isImportantValid = bool.TryParse(Console.ReadLine(), out isImportant);
+            }
+            while (!isImportantValid);
+
+            todoMatrix.AddItem(title, date, isImportant);
         }
 
         private static void QuarterMenu(TodoMatrix todoMatrix)
