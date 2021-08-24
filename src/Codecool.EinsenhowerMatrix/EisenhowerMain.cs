@@ -47,10 +47,93 @@ namespace Codecool.EinsenhowerMatrix
                         case 3:
                             CreateNewTodo(todoMatrix);
                             break;
+                        case 4:
+                            RemoveItemByIndex(todoMatrix);
+                            break;
+                        case 5:
+                            todoMatrix.ArchiveItems();
+                            Console.WriteLine("Items archived!");
+                            Console.ReadLine();
+                            break;
                     }
                 }
             }
             while (_cmd);
+        }
+
+        private static void RemoveItemByIndex(TodoMatrix todoMatrix)
+        {
+            Console.WriteLine("[ 1 ] Urgent and Important");
+            Console.WriteLine("[ 2 ] Not urgent and Important");
+            Console.WriteLine("[ 3 ] Urgent and Not important");
+            Console.WriteLine("[ 4 ] Not urgent and Not important");
+
+            int optionQuarter;
+            bool inputIsValidQuarter = int.TryParse(Console.ReadLine(), out optionQuarter);
+
+            if (inputIsValidQuarter)
+            {
+                int index;
+                bool indexIsValid;
+                switch (optionQuarter)
+                {
+                    case 1:
+                        Console.WriteLine(todoMatrix.GetSpecificQuarter(TodoMatrix.QuarterTypes.UrgentAndImportant));
+                        do
+                        {
+                            Console.Write("Type index: ");
+                            indexIsValid = int.TryParse(Console.ReadLine(), out index);
+                        }
+                        while (!indexIsValid);
+                        try
+                        {
+                            todoMatrix.DeleteTodoItemFromSpecificQuarter(TodoMatrix.QuarterTypes.UrgentAndImportant, index);
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+                            //Console.WriteLine(e.ToString());
+                            Console.WriteLine("Index not exists!");
+                        }
+
+                        Console.ReadKey();
+                        break;
+                    case 2:
+                        Console.WriteLine(todoMatrix.GetSpecificQuarter(TodoMatrix.QuarterTypes.NotUrgentAndImportant));
+                        do
+                        {
+                            Console.Write("Type index: ");
+                            indexIsValid = int.TryParse(Console.ReadLine(), out index);
+                        }
+                        while (!indexIsValid);
+                        todoMatrix.DeleteTodoItemFromSpecificQuarter(TodoMatrix.QuarterTypes.NotUrgentAndImportant, index);
+                        Console.ReadKey();
+                        break;
+                    case 3:
+                        Console.WriteLine(todoMatrix.GetSpecificQuarter(TodoMatrix.QuarterTypes.UrgentAndNotimportant));
+                        do
+                        {
+                            Console.Write("Type index: ");
+                            indexIsValid = int.TryParse(Console.ReadLine(), out index);
+                        }
+                        while (!indexIsValid);
+                        todoMatrix.DeleteTodoItemFromSpecificQuarter(TodoMatrix.QuarterTypes.UrgentAndNotimportant, index);
+                        Console.ReadKey();
+                        break;
+                    case 4:
+                        Console.WriteLine(todoMatrix.GetSpecificQuarter(TodoMatrix.QuarterTypes.NotUrgentAndNotimportant));
+                        do
+                        {
+                            Console.Write("Type index: ");
+                            indexIsValid = int.TryParse(Console.ReadLine(), out index);
+                        }
+                        while (!indexIsValid);
+                        todoMatrix.DeleteTodoItemFromSpecificQuarter(TodoMatrix.QuarterTypes.NotUrgentAndNotimportant, index);
+                        Console.ReadKey();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         private static void CreateNewTodo(TodoMatrix todoMatrix)

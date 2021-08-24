@@ -139,6 +139,13 @@
             </summary>
             <returns>string with all quarters and associated items</returns>
         </member>
+        <member name="M:Codecool.EinsenhowerMatrix.TodoMatrix.DeleteTodoItemFromSpecificQuarter(Codecool.EinsenhowerMatrix.TodoMatrix.QuarterTypes,System.Int32)">
+            <summary>
+            Returns human readable representation for one specific quarter
+            </summary>
+            <param name="quarterType">quartertype</param>
+            <param name="index">index</param>
+        </member>
         <member name="T:Codecool.EinsenhowerMatrix.TodoQuarter">
             <summary>
             Class that represents quarter for items from different categories

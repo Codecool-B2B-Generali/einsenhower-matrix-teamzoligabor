@@ -49,7 +49,15 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="index">index of </param>
         public void RemoveItem(int index)
         {
-            Items.RemoveAt(index);
+            SortToDoItems();
+            if (index >= 0 && index <= Items.Count - 1)
+            {
+                Items.RemoveAt(index);
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
         }
 
         /// <summary>
@@ -69,9 +77,10 @@ namespace Codecool.EinsenhowerMatrix
             SortToDoItems();
 
             StringBuilder sb = new StringBuilder();
-            foreach (var item in Items)
+            for (int i = 0; i < Items.Count; i++)
             {
-                sb.AppendLine(item.ToString());
+                sb.Append($"{i} ");
+                sb.AppendLine(Items[i].ToString());
             }
 
             return sb.ToString();

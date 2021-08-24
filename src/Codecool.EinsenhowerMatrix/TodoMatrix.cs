@@ -161,6 +161,32 @@ namespace Codecool.EinsenhowerMatrix
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Returns human readable representation for one specific quarter
+        /// </summary>
+        /// <param name="quarterType">quartertype</param>
+        /// <param name="index">index</param>
+        public void DeleteTodoItemFromSpecificQuarter(QuarterTypes quarterType, int index)
+        {
+            switch (quarterType)
+            {
+                case QuarterTypes.UrgentAndImportant:
+                    Quarters["Urgent and Important"].RemoveItem(index);
+                    break;
+                case QuarterTypes.UrgentAndNotimportant:
+                    Quarters["Not urgent and Important"].RemoveItem(index);
+                    break;
+                case QuarterTypes.NotUrgentAndImportant:
+                    Quarters["Urgent and Not important"].RemoveItem(index);
+                    break;
+                case QuarterTypes.NotUrgentAndNotimportant:
+                    Quarters["Not urgent and Not important"].RemoveItem(index);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private DateTime ConvertToDateFrom(string representation)
         {
             return Convert.ToDateTime(representation);
