@@ -20,6 +20,7 @@ namespace Codecool.EinsenhowerMatrix
         /// </summary>
         public TodoMatrix()
         {
+            CreateQuarters();
         }
 
         /// <summary>
@@ -30,6 +31,29 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="isImportant">boolean value that indicates whenever task is important or not</param>
         public void AddItem(string title, DateTime date, bool isImportant = false)
         {
+            DateTime nowPlus3Days = DateTime.Now.AddDays(3);
+            if (date <= nowPlus3Days)
+            {
+                if (isImportant)
+                {
+                    Quarters["Urgent and Important"].AddItem(title, date, isImportant);
+                }
+                else
+                {
+                    Quarters["Urgent and Not important"].AddItem(title, date);
+                }
+            }
+            else
+            {
+                if (isImportant)
+                {
+                    Quarters["Not urgent and Important"].AddItem(title, date, isImportant);
+                }
+                else
+                {
+                    Quarters["Not urgent and Not important"].AddItem(title, date);
+                }
+            }
         }
 
         /// <summary>
@@ -37,6 +61,10 @@ namespace Codecool.EinsenhowerMatrix
         /// </summary>
         public void ArchiveItems()
         {
+            foreach (KeyValuePair<string, TodoQuarter> quarter in Quarters)
+            {
+                quarter.Value.ArchiveItems();
+            }
         }
 
         /// <summary>
@@ -45,6 +73,13 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="filePath">string with path leading to source file</param>
         public void AddItemsFromFile(string filePath)
         {
+            var csv = File.ReadAllLines(filePath);
+
+            foreach (var line in csv)
+            {
+                var fields = line.Split("|");
+                AddItem(fields[0], Convert.ToDateTime(fields[1]), Convert.ToBoolean(fields[2]));
+            }
         }
 
         /// <summary>
@@ -53,6 +88,18 @@ namespace Codecool.EinsenhowerMatrix
         /// <param name="filePath">file path under all task will be saved</param>
         public void SaveItemsToFile(string filePath)
         {
+            var csv = new StringBuilder();
+
+            foreach (KeyValuePair<string, TodoQuarter> quarter in Quarters)
+            {
+                foreach (TodoItem todoItem in quarter.Value.Items)
+                {
+                    var newLine = string.Format("{0}|{1}|{2}", todoItem.Title, todoItem.Deadline.ToString(), todoItem.IsImportant.ToString());
+                    csv.AppendLine(newLine);
+                }
+            }
+
+            File.WriteAllText(filePath, csv.ToString());
         }
 
         /// <summary>
@@ -61,16 +108,29 @@ namespace Codecool.EinsenhowerMatrix
         /// <returns>string with all quarters and associated items</returns>
         public override string ToString()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+
+            foreach (KeyValuePair<string, TodoQuarter> quarter in Quarters)
+            {
+                sb.AppendLine(quarter.Key);
+                sb.AppendLine(quarter.Value.ToString());
+            }
+
+            return sb.ToString();
         }
 
         private DateTime ConvertToDateFrom(string representation)
         {
-            throw new NotImplementedException();
+            return Convert.ToDateTime(representation);
         }
 
         private void CreateQuarters()
         {
+            Quarters = new Dictionary<string, TodoQuarter>();
+            Quarters.Add("Urgent and Important", new TodoQuarter());
+            Quarters.Add("Not urgent and Important", new TodoQuarter());
+            Quarters.Add("Urgent and Not important", new TodoQuarter());
+            Quarters.Add("Not urgent and Not important", new TodoQuarter());
         }
     }
 }
