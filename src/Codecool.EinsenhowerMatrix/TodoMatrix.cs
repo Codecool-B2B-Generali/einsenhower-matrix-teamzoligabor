@@ -11,6 +11,17 @@ namespace Codecool.EinsenhowerMatrix
     public class TodoMatrix
     {
         /// <summary>
+        /// QuarterTypes enum
+        /// </summary>
+        public enum QuarterTypes
+        {
+            UrgentAndImportant,
+            UrgentAndNotimportant,
+            NotUrgentAndImportant,
+            NotUrgentAndNotimportant,
+        }
+
+        /// <summary>
         /// Gets or sets dictionary with quarters
         /// </summary>
         public Dictionary<string, TodoQuarter> Quarters { get; set; }
@@ -100,6 +111,37 @@ namespace Codecool.EinsenhowerMatrix
             }
 
             File.WriteAllText(filePath, csv.ToString());
+        }
+
+        /// <summary>
+        /// Returns human readable representation for one specific quarter
+        /// </summary>
+        /// <returns>string with all quarters and associated items</returns>
+        /// <param name="quarterTypes">quartertype</param>
+        public string GetSpecificQuarter(QuarterTypes quarterTypes)
+        {
+            string result;
+
+            switch (quarterTypes)
+            {
+                case QuarterTypes.UrgentAndImportant:
+                    result = Quarters["Urgent and Important"].ToString();
+                    break;
+                case QuarterTypes.UrgentAndNotimportant:
+                    result = Quarters["Not urgent and Important"].ToString();
+                    break;
+                case QuarterTypes.NotUrgentAndImportant:
+                    result = Quarters["Urgent and Not important"].ToString();
+                    break;
+                case QuarterTypes.NotUrgentAndNotimportant:
+                    result = Quarters["Not urgent and Not important"].ToString();
+                    break;
+                default:
+                    result = string.Empty;
+                    break;
+            }
+
+            return result;
         }
 
         /// <summary>

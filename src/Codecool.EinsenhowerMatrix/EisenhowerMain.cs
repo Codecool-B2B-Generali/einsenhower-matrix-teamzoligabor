@@ -14,6 +14,9 @@ namespace Codecool.EinsenhowerMatrix
         /// </summary>
         public void Run()
         {
+            TodoMatrix todoMatrix = new TodoMatrix();
+            todoMatrix.AddItem("cím", new DateTime(2021, 08, 25), true);
+            todoMatrix.AddItem("cím", new DateTime(2021, 08, 26), true);
             do
             {
                 Console.Clear();
@@ -33,6 +36,11 @@ namespace Codecool.EinsenhowerMatrix
                     {
                         case 0:
                             _cmd = false;
+                            break;
+                        case 2:
+                            // TodoMatrix todoMatrix = new TodoMatrix();
+                            Console.WriteLine(todoMatrix.GetSpecificQuarter(TodoMatrix.QuarterTypes.UrgentAndImportant));
+                            Console.ReadKey();
                             break;
                     }
                 }
